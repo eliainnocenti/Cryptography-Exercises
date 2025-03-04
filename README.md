@@ -27,32 +27,27 @@ The exercises are divided into two main parts:
 
 The repository is organized as follows:
 
-| Section                 | Description                                                            |
-| ----------------------- | ---------------------------------------------------------------------- |
-| **C/OpenSSL Exercises** | Exercises using C and OpenSSL covering various cryptographic topics.   |
-| **Python Exercises**    | Placeholder for cryptography and CTF challenges implemented in Python. |
+| Section                   | Description                                                            |
+| ------------------------- | ---------------------------------------------------------------------- |
+| **`C/OpenSSL` Exercises** | Exercises using C and OpenSSL covering various cryptographic topics.   |
+| **`Python` Exercises**    | Placeholder for cryptography and CTF challenges implemented in Python. |
 
-Inside the **C/OpenSSL Exercises** folder, exercises are structured into dedicated directories:
+Inside the **`C/OpenSSL Exercises`** folder, exercises are structured into dedicated directories:
 
-| Exercise                    | Description                                                              | Link                                                 |
-| --------------------------- | ------------------------------------------------------------------------ | ---------------------------------------------------- |
-| **Random Numbers**          | Generating cryptographically secure pseudo-random numbers using OpenSSL. | [01](C/OpenSSL/01-random-numbers/README.md)          |
-| **Symmetric Encryption**    | Implementing symmetric encryption algorithms with OpenSSL.               | [02](C/OpenSSL/02-symmetric-encryption/README.md)    |
-| **Digests and MACs**        | Exploring cryptographic digests and MACs.                                | [03](C/OpenSSL/03-digests-MACs/README.md)            |
-| **Big Numbers**             | Handling big numbers in cryptographic operations.                        | [04](C/OpenSSL/04-big-numbers/README.md)             |
-| **Asymmetric Cryptography** | Working with asymmetric cryptography and public key operations.          | [05](C/OpenSSL/05-asymmetric-cryptography/README.md) |
+| Exercise                                                                        | Description                                                              |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| [**`Random Numbers`**](C/OpenSSL/01-random-numbers/README.md)                   | Generating cryptographically secure pseudo-random numbers using OpenSSL. |
+| [**`Symmetric Encryption`**](C/OpenSSL/02-symmetric-encryption/README.md)       | Implementing symmetric encryption algorithms with OpenSSL.               |
+| [**`Digests and MACs`**](C/OpenSSL/03-digests-MACs/README.md)                   | Exploring cryptographic digests and MACs.                                |
+| [**`Big Numbers`**](C/OpenSSL/04-big-numbers/README.md)                         | Handling big numbers in cryptographic operations.                        |
+| [**`Asymmetric Cryptography`**](C/OpenSSL/05-asymmetric-cryptography/README.md) | Working with asymmetric cryptography and public key operations.          |
    
 ## Resources
 
 - [OpenSSL Documentation](https://www.openssl.org/docs/)
 - [Python Cryptography Library](https://cryptography.io/)
 - [CryptoCTF Challenges](https://cryptoctf.m0lecon.it/)
-- [Course GitHub Repository](https://github.com/aldobas/cryptography-03lpyov-exercises)
-
-## Author
-
-- Elia Innocenti: [@eliainnocenti](https://github.com/eliainnocenti)   
-- Email: [elia.innocenti@studenti.polito.it](mailto:elia.innocenti@studenti.polito.it)  
+- [Course GitHub Repository](https://github.com/aldobas/cryptography-03lpyov-exercises) 
 
 ---
 
