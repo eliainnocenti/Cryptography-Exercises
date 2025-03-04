@@ -1,15 +1,14 @@
-# [Exercise Title]
+# Digests and MACs
 
 ## Overview
 
-Provide a brief introduction to this exercise. Explain what cryptographic concept or tool is being explored and why it is important.  
-*Example:* In this exercise, you will learn how to generate cryptographically secure pseudo-random numbers using OpenSSL.
+
 
 ## Objectives
 
-- **Understand the Concept:** Explain the underlying cryptographic principle (e.g., PRNG, symmetric encryption).
-- **Practical Implementation:** Write or analyze code that implements the concept.
-- **Security Insights:** Recognize common pitfalls and best practices in cryptographic implementations.
+- **Understand the Concept:** 
+- **Practical Implementation:** 
+- **Security Insights:** 
 
 ## Exercise Details
 
