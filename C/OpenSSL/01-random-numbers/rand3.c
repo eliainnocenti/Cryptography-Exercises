@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 #include <openssl/rand.h> // OpenSSL library for random number generation
-#include <openssl/err.h> // OpenSSL library for error handling
+#include <openssl/err.h>  // OpenSSL library for error handling
 
 #define MAX 64 // Define the maximum length of the random string
 
