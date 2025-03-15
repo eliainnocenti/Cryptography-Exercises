@@ -22,6 +22,8 @@ void handle_errors(void) {
  * save in a buffer in memory the result of the encryption
  */
 
+// TODO: check the code
+
 int main(int argc, char **argv) {
     /* Load error strings for OpenSSL */
     ERR_load_crypto_strings();

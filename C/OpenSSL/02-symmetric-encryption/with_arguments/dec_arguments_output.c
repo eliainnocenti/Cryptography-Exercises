@@ -22,6 +22,8 @@ void handle_errors(void) {
  * argv[4] --> output file
  */
 
+// TODO: check the code
+
 int main(int argc, char **argv) {
     /* Load error strings for OpenSSL */
     ERR_load_crypto_strings();
