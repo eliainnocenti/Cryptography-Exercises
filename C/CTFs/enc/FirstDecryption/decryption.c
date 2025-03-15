@@ -23,34 +23,37 @@
 
 #define MAX_BUFFER 1024
 
-void handle_errors(void)
-{
+void handle_errors(void) {
     ERR_print_errors_fp(stderr);
     abort();
 }
 
-// TODO: re-format this snippet
-/* Decode a base64-encoded string into a malloc’d buffer.
-   The caller is responsible for freeing the returned buffer.
-   out_len is set to the number of decoded bytes. */
-   unsigned char *base64_decode(const char *input, int *out_len) {
+/*
+ * Decode a base64-encoded string into a malloc’d buffer.
+ * The caller is responsible for freeing the returned buffer.
+ * out_len is set to the number of decoded bytes.
+ */
+unsigned char *base64_decode(const char *input, int *out_len) {
     BIO *b64, *bmem;
     size_t input_len = strlen(input);
-    // Allocate a buffer large enough (base64 expands by ~33%)
+
+    /* Allocate a buffer large enough */
     unsigned char *buffer = malloc(input_len);
     if (!buffer) {
         perror("malloc");
         exit(1);
     }
-    
+
     b64 = BIO_new(BIO_f_base64());
-    // Disable newlines in the base64 decoding
+
+    /* Disable newlines in the base64 decoding */
     BIO_set_flags(b64, BIO_FLAGS_BASE64_NO_NL);
     bmem = BIO_new_mem_buf((void*)input, input_len);
     bmem = BIO_push(b64, bmem);
 
     *out_len = BIO_read(bmem, buffer, input_len);
     BIO_free_all(bmem);
+
     return buffer;
 }
 
