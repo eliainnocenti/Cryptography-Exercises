@@ -27,12 +27,13 @@ The exercises are divided into two main parts:
 
 The repository is organized as follows:
 
-| Section                   | Description                                                            |
-| ------------------------- | ---------------------------------------------------------------------- |
-| **`C/OpenSSL` Exercises** | Exercises using C and OpenSSL covering various cryptographic topics.   |
-| **`Python` Exercises**    | Placeholder for cryptography and CTF challenges implemented in Python. |
+| Section         | Description                                                            |
+| --------------- | ---------------------------------------------------------------------- |
+| **`C/OpenSSL`** | Exercises using C and OpenSSL covering various cryptographic topics.   |
+| **`C/CTFs`**    | Capture The Flag (CTF) challenges implemented in C, focusing on practical cryptographic problems and solutions. |
+| **`Python`**    | Placeholder for cryptography and CTF challenges implemented in Python. |
 
-Inside the **`C/OpenSSL Exercises`** folder, exercises are structured into dedicated directories:
+Inside the **`C/OpenSSL`** folder, exercises are structured into dedicated directories:
 
 | Exercise                                                                        | Description                                                              |
 | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
@@ -42,13 +43,14 @@ Inside the **`C/OpenSSL Exercises`** folder, exercises are structured into dedic
 | [**`Big Numbers`**](C/OpenSSL/04-big-numbers/README.md)                         | Handling big numbers in cryptographic operations.                        |
 | [**`Asymmetric Cryptography`**](C/OpenSSL/05-asymmetric-cryptography/README.md) | Working with asymmetric cryptography and public key operations.          |
    
-## Resources
+<!-- ## Resources
 
 - [OpenSSL Documentation](https://www.openssl.org/docs/)
 - [Python Cryptography Library](https://cryptography.io/)
 - [CryptoCTF Challenges](https://cryptoctf.m0lecon.it/)
-- [Course GitHub Repository](https://github.com/aldobas/cryptography-03lpyov-exercises) 
+- [Course GitHub Repository](https://github.com/aldobas/cryptography-03lpyov-exercises) -->
 
----
+## Author
 
-*This repository is for educational purposes as part of the Cryptography course at Politecnico di Torino.*
+- GitHub: [@eliainnocenti](https://github.com/eliainnocenti)
+- Email: [elia.innocenti@studenti.polito.it](mailto:elia.innocenti@studenti.polito.it)
