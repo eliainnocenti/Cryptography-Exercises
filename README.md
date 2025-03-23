@@ -42,7 +42,17 @@ Inside the **`C/OpenSSL`** folder, exercises are structured into dedicated direc
 | [**`Digests and MACs`**](C/OpenSSL/03-digests-MACs/README.md)                   | Exploring cryptographic digests and MACs.                                |
 | [**`Big Numbers`**](C/OpenSSL/04-big-numbers/README.md)                         | Handling big numbers in cryptographic operations.                        |
 | [**`Asymmetric Cryptography`**](C/OpenSSL/05-asymmetric-cryptography/README.md) | Working with asymmetric cryptography and public key operations.          |
-   
+
+Inside the **`C/CTFs`** folder, exercises are structured into dedicated directories:
+
+| CTF Challenge                                                                 | Description                                                              |
+| ----------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| [**`Rand`**](C/CTFs/rand/README.md)                                           | Bytewise operations on random strings to capture the flag.               |
+| [**`Encryption`**](C/CTFs/enc/README.md)                                      | Various encryption challenges including padding, decryption, and more.   |
+| [**`Digest`**](C/CTFs/dgst/README.md)                                         | Compute keyed digests and modify digest algorithms to capture the flag.  |
+| [**`HMAC`**](C/CTFs/hmac/README.md)                                           | Compute HMAC-SHA256 of two files to capture the flag.                    |
+| [**`Asymmetric`**](C/CTFs/asym/README.md)                                     | Find missing parameters using BIGNUM primitives to capture the flag.     |
+
 <!-- ## Resources
 
 - [OpenSSL Documentation](https://www.openssl.org/docs/)
