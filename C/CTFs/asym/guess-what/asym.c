@@ -81,6 +81,9 @@ int main() {
     BIGNUM *rem = BN_new();
 
     /* Calculate q = n / p */
+    /* In RSA, n is the product of two prime numbers p and q.
+     * Given n and p, we can find q by dividing n by p.
+     */
     if (!BN_div(q, rem, n, p, ctx)) {
         fprintf(stderr, "Error during division\n");
         exit(1);
