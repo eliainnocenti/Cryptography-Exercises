@@ -4,3 +4,8 @@
 # VSCode settings
 .vscode
 
+# Python cache
+__pycache__/
+
+# Virtual environment
+venv/
