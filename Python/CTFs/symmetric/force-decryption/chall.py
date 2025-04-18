@@ -1,7 +1,7 @@
 from Crypto.Cipher import AES
 from Crypto.Random import get_random_bytes
 
-from secret import flag  # Import the flag from a secret module
+from secret import flag # Import the flag from a secret module
 
 # Generate a random 128-bit key for AES encryption
 key = get_random_bytes(16)
@@ -14,8 +14,8 @@ def make_cipher():
     Creates a new AES cipher in CBC mode with a random IV.
     Returns the IV and the cipher object.
     """
-    IV = get_random_bytes(16)  # Generate a random 128-bit IV
-    cipher = AES.new(key, AES.MODE_CBC, IV=IV)  # Create an AES cipher in CBC mode
+    IV = get_random_bytes(16) # Generate a random 128-bit IV
+    cipher = AES.new(key, AES.MODE_CBC, IV=IV) # Create an AES cipher in CBC mode
     return IV, cipher
 
 def encrypt():
@@ -23,8 +23,8 @@ def encrypt():
     Prompts the user for input, encrypts it using AES-CBC, and prints the IV and ciphertext.
     Enforces restrictions on the input length and specific forbidden values.
     """
-    string = input("What do you want to encrypt?\n> ")  # Get input from the user
-    string = bytes.fromhex(string)  # Convert the input from hex to bytes
+    string = input("What do you want to encrypt?\n> ") # Get input from the user
+    string = bytes.fromhex(string) # Convert the input from hex to bytes
 
     # Ensure the input is exactly 16 bytes
     if len(string) != 16:
@@ -48,11 +48,11 @@ def decrypt():
     Prompts the user for ciphertext and IV, decrypts the ciphertext using AES-CBC,
     and checks if the decrypted value matches the forbidden value.
     """
-    string = input("What do you want to decrypt?\n> ")  # Get ciphertext from the user
-    string = bytes.fromhex(string)  # Convert the ciphertext from hex to bytes
+    string = input("What do you want to decrypt?\n> ") # Get ciphertext from the user
+    string = bytes.fromhex(string) # Convert the ciphertext from hex to bytes
 
-    IV = input("Gimme the IV\n> ")  # Get the IV from the user
-    IV = bytes.fromhex(IV)  # Convert the IV from hex to bytes
+    IV = input("Gimme the IV\n> ") # Get the IV from the user
+    IV = bytes.fromhex(IV)         # Convert the IV from hex to bytes
 
     # Prevent the use of the forbidden value as the IV
     if IV == leak:
@@ -65,9 +65,9 @@ def decrypt():
 
     # Check if the decrypted value matches the forbidden value
     if leak == decrypted:
-        print(f"Good job. Your flag: {flag}")  # Print the flag if the check passes
+        print(f"Good job. Your flag: {flag}")
     else:
-        print(f"Mh, a normal day.\nDecrypted: {decrypted.hex()}")  # Print the decrypted value otherwise
+        print(f"Mh, a normal day.\nDecrypted: {decrypted.hex()}")
 
 if __name__ == '__main__':
     # Display the menu and handle user commands
@@ -80,11 +80,11 @@ if __name__ == '__main__':
         "> "
 
     while True:
-        cmd = input(menu).strip()  # Get the user's command
+        cmd = input(menu).strip() # Get the user's command
 
-        if cmd == "quit":  # Exit the program
+        if cmd == "quit":   # Exit the program
             break
-        elif cmd == "help":  # Show the menu again
+        elif cmd == "help": # Show the menu again
             continue
         elif cmd == "enc":  # Encrypt user input
             encrypt()

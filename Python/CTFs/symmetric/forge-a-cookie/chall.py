@@ -80,7 +80,7 @@ if __name__ == "__main__":
     while True:
         cmd = input(menu).strip() # Get the user's command
 
-        if cmd == "quit": # Exit the program
+        if cmd == "quit":   # Exit the program
             break
         elif cmd == "help": # Show the menu again
             continue
