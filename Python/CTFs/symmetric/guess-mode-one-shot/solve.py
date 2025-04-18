@@ -1,14 +1,15 @@
-# guess-mode-one-shot
+# guess mode one-shot
 
 # Read the code. If you really understood it, you can correctly guess the mode. 
 # If you do it with a probability higher than 2^128 you'll get the flag.
 # nc 130.192.5.212 6531
 
-# import socket
 from pwn import *
 from tqdm import tqdm
 
-from config import HOST, PORT
+# Remote server details
+HOST = "130.192.5.212"
+PORT = 6531
 
 DEBUG = False  # Set to False to disable debug outputs
 
