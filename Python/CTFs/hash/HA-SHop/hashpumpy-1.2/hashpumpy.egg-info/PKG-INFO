@@ -1,0 +1,11 @@
+Metadata-Version: 2.4
+Name: hashpumpy
+Version: 1.2
+Summary: Python bindings for HashPump
+Home-page: https://github.com/bwall/HashPump
+Author: Zach Riggle (Python binding), Brian Wallace (HashPump), Yen Chi Hsuan (Python3 support)
+License: MIT
+Dynamic: author
+Dynamic: home-page
+Dynamic: license
+Dynamic: summary
