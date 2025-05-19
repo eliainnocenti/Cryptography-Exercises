@@ -11,8 +11,6 @@ factor n by exploiting the close primes, compute the private exponent, decrypt c
 and print the flag.
 """
 
-import sys
-
 from Crypto.Util.number import long_to_bytes
 from math import isqrt
 

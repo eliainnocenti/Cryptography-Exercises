@@ -15,54 +15,58 @@ We use a binary search on the interval [0, n) for m, adjusting the ciphertext by
 querying the LSB each time to narrow the interval.
 """
 
-from pwn import remote
-
+from pwn import remote, log
+from fractions import Fraction
 from Crypto.Util.number import long_to_bytes
 
+# Server configuration
 HOST = '130.192.5.212'
 PORT = 6647
+
+# RSA public exponent
 E = 65537
 
 def main():
     # Connect to oracle
     conn = remote(HOST, PORT)
 
-    # Receive modulus n and initial ciphertext c0
+    # Receive modulus n and initial ciphertext c
     n = int(conn.recvline().strip())
-    c0 = int(conn.recvline().strip())
+    c = int(conn.recvline().strip())
 
     # Precompute multiplier: 2^e mod n
     two_e = pow(2, E, n)
 
     # Interval [low, high)
-    low, high = 0, n
-    c = c0
+    low, high = Fraction(0), Fraction(n)
 
-    # Perform bit-by-bit reconstruction
+    # Initialize progress bar
+    progress = log.progress('Bits')
+
+    # Perform binary search using fractions
     for i in range(n.bit_length()):
-        # Shift ciphertext: corresponds to multiplying plaintext by 2
-        c = (c * two_e) % n
-        conn.sendline(str(c))
+        c = (c * two_e) % n # Blind ciphertext
+
+        # Get parity bit from the oracle
+        conn.sendline(str(c).encode())
         bit = int(conn.recvline().strip())
 
-        mid = (low + high) // 2
+        mid = (low + high) / 2
         if bit == 0:
-            # plaintext*2^(i+1) < n => plaintext < mid
-            high = mid
+            high = mid # Plaintext is in the lower half
         else:
-            # plaintext*2^(i+1) >= n => plaintext >= mid
-            low = mid
+            low = mid  # Plaintext is in the upper half
+        
+        # Update progress line (overwrites itself)
+        progress.status(f"{i+1}/{n.bit_length()} (bit={bit})")
 
-    # The correct plaintext m lies at the lower bound of [low, high)
-    m = low
+    progress.success('Done')
     
-    # Validate: if ending isn't '}', try high-1
-    flag_bytes = long_to_bytes(m)
-    if not flag_bytes.decode().endswith('}'):
-        m = high - 1
-        flag_bytes = long_to_bytes(m)
+    # Final plaintext is the integer part of high
+    m = int(high)
+    flag = long_to_bytes(m).decode()
+    log.success(f"Flag: {flag}")
 
-    print(flag_bytes.decode())
     conn.close()
 
 if __name__ == '__main__':

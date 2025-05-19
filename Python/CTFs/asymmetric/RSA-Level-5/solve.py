@@ -19,11 +19,13 @@ receive m*g mod n, then unblind to recover m.
 
 import random
 from pwn import remote
-
 from Crypto.Util.number import long_to_bytes, inverse
 
+# Server configuration
 HOST = '130.192.5.212'
 PORT = 6645
+
+# RSA public exponent
 E = 65537
 
 def main():
@@ -42,7 +44,7 @@ def main():
     c_blind = (c0 * ge) % n
 
     # Send decryption request for blinded ciphertext
-    conn.sendline(f"d{c_blind}")
+    conn.sendline(f"d{c_blind}".encode())
     m_blind = int(conn.recvline().strip())
 
     # Unblind: m = (m_blind * g^{-1}) mod n
