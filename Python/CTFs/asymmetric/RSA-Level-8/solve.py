@@ -4,14 +4,25 @@
 # [103182582101088432221896723911959658810148642607491933315730960734118240195754769950819474607526761310491072435697251726703164265174774235724659738831757409760766157639161825762332534066038346404165315092057708788440973076257965331599855954578010994574159603470755148099351579202141225172980367799665476167847, 164529226839413559924976053055945999494164079991436306473401181675696469337231336487085545789574002739916229214459538703141568506814456513212890362327970644104020403940185072579976632642454837002305793830295185819162025725080875039582271289438064337645037739930310804010164136027800069917885200489266709851147, 101253463082304765569988541878936444188901784404118982304304492412707865403599337342671466935573442997065056100597392285699618123881764488797053967545477164493257618640769155601013044416777930811645230707542352289749878326865162201600174774219905814876248581859055603923729383992948817570153516220675788026019]
 # [49061847403090198347871622684419440435020583765472679724043086578999237521080306057376530837215217884164240970675343921488615718206622981851071355344619510984897988244448903079728468570182192877366774485494180463301223638383404084085162769928604900840343104637519232149881136672689624849105790343296894169638, 69379335482793180476700701606108054426491112911094839088423398496436178476703250112662999759680953829050820926826348692673810360008347808961160090296815470631238301541316949142095598699542200662648425136888777434584579800116810012163027021559640993590961230761590447340796858130209448565431799660026498031809, 12703169327460384687002396982277926563609859240682417397412251404704813340279611932445729764372467798958975417752028956581609966062236180984581318736509577950218952687259759058038887912101360016831759532164596689952106890923630907107502607383301971789208757053392565264776050015020366373713225575559221036110]
 
-"""
-Broadcast attack on RSA with low exponent (e=3):
+# === Attack Overview ===
+# - Attack Type: Håstad’s Broadcast Attack (same message m, small public exponent e)
+# - Mathematical Attack
+# - Weakness: Small public exponent with the same message sent to multiple recipients
+# - Brief Attack Description:
+#     This attack exploits the situation where the same plaintext message
+#     is encrypted with the same small public exponent `e` across multiple RSA
+#     moduli. The ciphertexts can be combined using the Chinese Remainder Theorem
+#     to reconstruct the value of `m^e` modulo the product of the moduli.
+#     Since `m^e` is less than the product of the moduli, we can compute the
+#     integer e-th root of the reconstructed value to recover the original plaintext message.
 
-Uses provided moduli and ciphertexts to perform standard Håstad broadcast attack:
-  1. CRT to reconstruct M = m^e mod N
-  2. Integer cube root via binary search to find m
-  3. Convert to bytes for flag
-"""
+# === Attack Steps ===
+#  1. Use Chinese Remainder Theorem to find M ≡ m^e mod (n₁ · n₂ · n₃).
+#  2. Since m^e < n₁ · n₂ · n₃, compute the integer e-th root of M.
+#  3. Convert the recovered message to bytes to reveal the flag.
+
+# === Flag ===
+# CRYPTO25{2aff1e58-5c8c-4840-8bb7-ceb07b6276be}
 
 from Crypto.Util.number import long_to_bytes, inverse
 
@@ -26,7 +37,36 @@ ciphers = [
     69379335482793180476700701606108054426491112911094839088423398496436178476703250112662999759680953829050820926826348692673810360008347808961160090296815470631238301541316949142095598699542200662648425136888777434584579800116810012163027021559640993590961230761590447340796858130209448565431799660026498031809,
     12703169327460384687002396982277926563609859240682417397412251404704813340279611932445729764372467798958975417752028956581609966062236180984581318736509577950218952687259759058038887912101360016831759532164596689952106890923630907107502607383301971789208757053392565264776050015020366373713225575559221036110
 ]
-e = 3
+E = 3
+
+# The crt function implements the Chinese Remainder Theorem (CRT), which allows us to combine several ciphertexts
+# (each modulo a different RSA modulus) into a single value M ≡ m^e mod (n1 * n2 * n3). This is possible because
+# the same plaintext message m was encrypted with the same small exponent e but different moduli. CRT reconstructs
+# m^e exactly when m^e is smaller than the product of the moduli, which is the case in Håstad’s Broadcast Attack.
+
+# Since m has been encrypted with the same e=3 across different moduli, 
+# we can use the CRT to combine the ciphertexts: M ≡ m^3 mod (n1 * n2 * n3)
+
+def crt(remainders, mods):
+    """
+    Chinese Remainder Theorem for pairwise-coprime mods.
+    Returns (x mod N, N).
+    """
+    N = 1
+    for ni in mods:
+        N *= ni
+    
+    result = 0
+    for ri, ni in zip(remainders, mods):
+        Ni = N // ni
+        inv = inverse(Ni, ni)
+        result = (result + ri * Ni * inv) % N
+
+    return result, N
+
+# The integer_nth_root function is used to recover the original message m from m^e. Since we know M = m^e and e is small,
+# we can efficiently compute the integer e-th root of M. If m^e < n1 * n2 * n3, this root will be exact and gives us m,
+# thus breaking RSA security in this scenario.
 
 def integer_nth_root(x, n):
     """
@@ -48,28 +88,11 @@ def integer_nth_root(x, n):
     # high is floor(root)
     return high, False
 
-def crt(remainders, mods):
-    """
-    Chinese Remainder Theorem for pairwise-coprime mods.
-    Returns (x mod N, N).
-    """
-    N = 1
-    for ni in mods:
-        N *= ni
-    
-    result = 0
-    for ri, ni in zip(remainders, mods):
-        Ni = N // ni
-        inv = inverse(Ni, ni)
-        result = (result + ri * Ni * inv) % N
-    
-    return result, N
-
 # Step 1: Apply CRT to reconstruct M = m^e mod N
 M, N = crt(ciphers, mods)
 
 # Step 2: Compute integer cube root of M to recover m
-m, exact = integer_nth_root(M, e)
+m, exact = integer_nth_root(M, E)
 if not exact:
     print("[!] Warning: m^3 >= N, cube root not exact. Flag may be incorrect.")
 

@@ -1,5 +1,5 @@
-from Crypto.Util.number import bytes_to_long, getPrime # Import utility functions for number conversion and prime generation
-from secret import flag # Import the secret flag to be encrypted
+from Crypto.Util.number import bytes_to_long, getPrime
+from secret import flag
 
 # Generate two random 64-bit prime numbers for RSA key generation
 p, q = getPrime(64), getPrime(64)

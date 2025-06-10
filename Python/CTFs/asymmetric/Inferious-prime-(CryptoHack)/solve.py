@@ -1,6 +1,7 @@
-# RSA - Level 1
+# Inferious prime (CryptoHack)
 
-# The attached file contains the code and the output. Use them to get the flag...
+# Here is my super-strong RSA implementation, because it's 
+# 1600 bits strong it should be unbreakable... at least I think so!
 
 # === Attack Overview ===
 # - Attack Type: Factorization of the modulus (via an online database client → FactorDB)
@@ -21,15 +22,15 @@
 #  5. Convert the decrypted integer to bytes to reveal the flag.
 
 # === Flag ===
-# CRYPTO25{X5a.7}
+# CRYPTO25{fh98df62nx1mc}
 
 from Crypto.Util.number import long_to_bytes
 from factordb.factordb import FactorDB
 
 # Challenge-provided values
-n = 176278749487742942508568320862050211633
-c = 46228309104141229075992607107041922411
-E = 65537
+n = 770071954467068028952709005868206184906970777429465364126693
+c = 388435672474892257936058543724812684332943095105091384265939
+E = 3
 
 def fetch_factors_with_client(n):
     """
@@ -55,7 +56,7 @@ def main():
     if p > q:
         p, q = q, p
 
-    # Step 2: compute φ(n) = (p-1)*(q-1)
+    # Step 2: compute φ(n)
     phi = (p - 1) * (q - 1)
 
     # Step 3: compute modular inverse d = E^{-1} mod φ(n)

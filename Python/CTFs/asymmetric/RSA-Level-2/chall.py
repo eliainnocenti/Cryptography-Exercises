@@ -1,5 +1,5 @@
-from Crypto.Util.number import bytes_to_long, getPrime, isPrime # Import necessary functions for number manipulation and prime generation
-from secret import flag # Import the secret flag from another file
+from Crypto.Util.number import bytes_to_long, getPrime, isPrime
+from secret import flag
 
 def next_prime(p):
     # Find the next prime greater than p
