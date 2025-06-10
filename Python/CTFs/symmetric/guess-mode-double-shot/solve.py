@@ -4,10 +4,6 @@
 # Ask a second encryption to confirm your hypothesis...
 # nc 130.192.5.212 6532
 
-#!/usr/bin/env python3
-# solve.py for "guess-mode double-shot"
-# Automatically distinguishes ECB vs CBC under OTP+encrypt oracle
-
 from pwn import remote
 from tqdm import tqdm
 
