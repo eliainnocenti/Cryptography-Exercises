@@ -3,18 +3,32 @@
 # Find a string that is both the same and different than another string!
 # nc 130.192.5.212 6631
 
-"""
-solve.py
+# === Attack Overview ===
+# - Attack Type: MD4/MD5 Collision Attack (hash collision construction)
+# - Mathematical Attack
+# - Weakness: Colliding messages for MD4, differing for MD5
+# - Brief Attack Description:
+#     This attack exploits the ability to generate two distinct messages that
+#     collide under MD4 but differ under MD5. By using Wang's MD4 collision
+#     construction, we can produce two 64-byte messages m1 and m2 such that
+#     MD4(m1) == MD4(m2) but MD5(m1) != MD5(m2). This allows us to satisfy
+#     the challenge's requirement for "same and different" strings.
 
-1. Import and call Collision() to get two MD4-colliding 64-byte messages.
-2. Connect to the remote challenge, send these messages as hex, and print the flag.
-"""
+# === Attack Steps ===
+#  1. Use Wang's algorithm to generate two MD4-colliding messages.
+#  2. Verify that MD4(m1) == MD4(m2) and MD5(m1) != MD5(m2).
+#  3. Connect to the challenge server and send both messages as hex.
+#  4. Receive and print the flag.
+
+# === Flag ===
+# CRYPTO25{4dc2e2e9-a14f-4382-8a44-f57852a626ef}
 
 from pwn import remote
 from MD4Collision_Wang import Collision
 from hashlib import md5
 from Crypto.Hash import MD4
 
+# Server configuration
 HOST = '130.192.5.212'
 PORT = 6631
 

@@ -3,13 +3,23 @@
 # Here at HA-SHop, we accept only coupons as payment. Do you have one to get the flag?
 # nc 130.192.5.212 6630
 
-"""
-Steps:
-1. Connect to remote service with pwntools' remote()
-2. Request a coupon/MAC for a controlled username
-3. Perform SHA-256 length-extension attack (hashpumpy) to increase value
-4. Send forged coupon/MAC to purchase and retrieve the flag
-"""
+# === Attack Overview ===
+# - Attack Type: SHA-256 Length Extension Attack (hashpumpy)
+# - Implementation Attack
+# - Weakness: MAC construction is vulnerable to length extension (MAC = SHA256(key || msg))
+# - Brief Attack Description:
+#     This attack exploits the use of SHA-256 in a length-extension vulnerable MAC
+#     construction. By obtaining a valid MAC for a known message, we can use
+#     hashpumpy to forge a valid MAC for an extended message (e.g., increasing the
+#     coupon value) without knowing the secret key.
+
+# === Attack Steps ===
+#  1. Connect to the server and request a coupon and its MAC for a controlled username.
+#  2. Use hashpumpy to perform a SHA-256 length extension attack, appending "&value=101".
+#  3. Send the forged coupon and MAC to the server to redeem the flag.
+
+# === Flag ===
+# CRYPTO25{26caf08d-b0d2-43fd-be41-57c7f445b01f}
 
 from pwn import remote, context
 from hashpumpy import hashpump
@@ -20,6 +30,7 @@ PORT = 6630
 
 # We want the 'value' field > 100, so append &value=101
 APPEND = b"&value=101"
+
 # Secret key length from chall.py
 SECRET_LEN = 16
 
@@ -63,6 +74,10 @@ def forge_coupon(coupon: bytes, mac_hex: str) -> tuple[bytes, str]:
         APPEND,
         SECRET_LEN
     )
+    # I don't remove "&value=101" from the original coupon, I just append it.
+    # Since the server retrieve a dictionary from the coupon, it will
+    # automatically update the 'value' field to 101.
+
     # new_msg is bytes of coupon+padding+APPEND, new_hash is hex digest
     return new_msg.hex().encode(), new_hash
 
