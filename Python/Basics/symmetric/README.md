@@ -49,10 +49,40 @@ This script demonstrates hashing using SHA-256:
 - Hashes a message in parts.
 - Prints the digest and hexadecimal digest.
 
-### [`09.hash_file_sha3.py`](09.hash_file_sha3.py)
-This script demonstrates file hashing using SHA3-256:
-- Hashes the content of the current script file in text and binary modes.
-- Prints the digest and hexadecimal digest.
+### [`10.hmac_sha512.py`](10.hmac_sha512.py)
+This script demonstrates HMAC-SHA512 message authentication:
+- Generates secure HMAC keys
+- Creates and verifies HMAC-SHA512 signatures
+- Packages messages with HMAC in JSON format
+- Detects message tampering
+
+### [`11.aead_AES_gcm.py`](11.aead_AES_gcm.py)
+This script demonstrates AES-GCM authenticated encryption:
+- Encrypts data with authentication using AES-GCM mode
+- Handles associated data (authenticated but not encrypted)
+- JSON packaging for practical data transmission
+- Detects tampering and wrong associated data
+
+### [`12.key_derivation.py`](12.key_derivation.py)
+This script demonstrates password-based key derivation using scrypt:
+- Derives keys from passwords using scrypt KDF
+- Shows different parameter sets for various security levels
+- Benchmarks performance of different parameters
+- Demonstrates salt importance for security
+
+### [`13.sha256_hashlib.py`](13.sha256_hashlib.py)
+This script demonstrates SHA-256 hashing using Python's built-in hashlib:
+- Compares hashlib with PyCryptodome approaches
+- Shows incremental and direct hashing methods
+- Lists available hash algorithms in hashlib
+- Performance and compatibility considerations
+
+### [`14.hmac_hashlib.py`](14.hmac_hashlib.py)
+This script demonstrates HMAC and BLAKE2b using Python's built-in modules:
+- HMAC-SHA256 creation and verification using hmac module
+- BLAKE2b message authentication with keyed hashing
+- Secure comparison using hmac.compare_digest()
+- Performance comparison between different MAC methods
 
 ### [`10.hmac_sha512.py`](10.hmac_sha512.py)
 This script demonstrates HMAC generation and verification using SHA-512:
@@ -81,3 +111,27 @@ This script demonstrates HMAC generation and verification using Python's `hashli
 - Computes an HMAC for a message using SHA-256.
 - Verifies the HMAC to ensure message authenticity.
 - Demonstrates how mismatched messages result in verification failure.
+
+## Key Concepts Demonstrated
+
+- **Random Number Generation**: Cryptographically secure random bytes
+- **Block Ciphers**: AES encryption with proper padding and modes
+- **Stream Ciphers**: ChaCha20 and Salsa20 for fast encryption
+- **File Encryption**: Processing large files with chunked encryption
+- **Data Serialization**: JSON packaging for encrypted data transmission
+- **Hash Functions**: SHA-256 and SHA3-256 for data integrity
+- **Message Authentication**: HMAC and BLAKE2b for authenticity verification
+- **Authenticated Encryption**: AES-GCM combining encryption and authentication
+- **Key Derivation**: scrypt for deriving keys from passwords
+- **Library Comparison**: PyCryptodome vs Python standard library
+
+## Security Best Practices
+
+- Use cryptographically secure random number generation
+- Implement proper padding for block ciphers
+- Never reuse nonces with the same key in stream ciphers
+- Always verify authentication tags in AEAD modes
+- Use secure comparison functions for cryptographic verification
+- Choose appropriate parameters for key derivation functions
+- Store salts and nonces alongside encrypted data
+- Prints the digest and hexadecimal digest.
