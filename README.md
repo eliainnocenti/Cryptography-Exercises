@@ -17,8 +17,8 @@ The exercises are divided into two main parts:
   - **Big Numbers:** Handling large integer arithmetic for crypto applications.
   - **Asymmetric Cryptography:** Exploring public-key techniques and RSA.
 
-- **Python for Cryptography Attacks:**  
-  Focus on rapidly prototyping and executing attacks, as Python is the de facto language for quick and effective exploit development.
+- **Python for Cryptography and Attacks:**  
+  Focus on rapid prototyping, cryptanalysis, and CTF-style challenges. Python is used for both implementing cryptographic primitives and attacking them, making it ideal for practical exploit development and cryptanalysis.
 
 > [!NOTE]
 > For further details, refer to the course slides and materials provided during the lectures.
@@ -31,7 +31,9 @@ The repository is organized as follows:
 | --------------- | ---------------------------------------------------------------------- |
 | **`C/OpenSSL`** | Exercises using C and OpenSSL covering various cryptographic topics.   |
 | **`C/CTFs`**    | Capture The Flag (CTF) challenges implemented in C, focusing on practical cryptographic problems and solutions. |
-| **`Python`**    | Placeholder for cryptography and CTF challenges implemented in Python. |
+| **`Python`**    | Python-based cryptography exercises, attacks, and CTF challenges.      |
+
+### C/OpenSSL
 
 Inside the **`C/OpenSSL`** folder, exercises are structured into dedicated directories:
 
@@ -43,6 +45,8 @@ Inside the **`C/OpenSSL`** folder, exercises are structured into dedicated direc
 | [**`Big Numbers`**](C/OpenSSL/04-big-numbers/README.md)                         | Handling big numbers in cryptographic operations.                        |
 | [**`Asymmetric Cryptography`**](C/OpenSSL/05-asymmetric-cryptography/README.md) | Working with asymmetric cryptography and public key operations.          |
 
+### C/CTFs
+
 Inside the **`C/CTFs`** folder, exercises are structured into dedicated directories:
 
 | CTF Challenge                                                                 | Description                                                              |
@@ -53,12 +57,37 @@ Inside the **`C/CTFs`** folder, exercises are structured into dedicated director
 | [**`HMAC`**](C/CTFs/hmac/README.md)                                           | Compute HMAC-SHA256 of two files to capture the flag.                    |
 | [**`Asymmetric`**](C/CTFs/asym/README.md)                                     | Find missing parameters using BIGNUM primitives to capture the flag.     |
 
-<!-- ## Resources
+### Python
 
-- [OpenSSL Documentation](https://www.openssl.org/docs/)
-- [Python Cryptography Library](https://cryptography.io/)
-- [CryptoCTF Challenges](https://cryptoctf.m0lecon.it/)
-- [Course GitHub Repository](https://github.com/aldobas/cryptography-03lpyov-exercises) -->
+The **`Python/`** directory has been significantly expanded and now includes a wide range of cryptography exercises, attacks, and CTF-style challenges. The structure is as follows:
+
+#### Basics
+
+The Basics section provides comprehensive implementations of fundamental cryptographic concepts:
+
+| Exercise/Subdirectory                                                | Description                                                                                    |
+| -------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| [**`symmetric/`**](Python/Basics/symmetric/README.md)              | Symmetric cryptography fundamentals: key generation, block/stream ciphers, padding, AEAD, hash functions, and key derivation. |
+| [**`asymmetric/`**](Python/Basics/asymmetric/README.md)            | Asymmetric cryptography fundamentals: prime generation, RSA operations, digital signatures, and key exchange protocols. |
+
+#### Attacks
+
+The Attacks section contains practical implementations of cryptographic attack techniques:
+
+| Exercise/Subdirectory   | Description                                                                                   |
+| ----------------------- | --------------------------------------------------------------------------------------------- |
+| **`symmetric/`**        | Attacks on symmetric cryptography: ECB/CBC attacks, padding oracle attacks, keystream reuse, and cipher vulnerabilities. |
+| **`asymmetric/`**       | Attacks on asymmetric cryptography: RSA vulnerabilities, factorization attacks, side-channel analysis, and mathematical cryptanalysis. |
+
+#### CTFs
+
+The CTF section contains practical challenge scenarios designed to test and improve cryptographic attack skills:
+
+| Exercise/Subdirectory                                               | Description                                                                                                      |
+| ------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| [**`symmetric/`**](Python/CTFs/symmetric/README.md)               | CTF challenges focused on symmetric cryptography attacks: padding oracles, mode vulnerabilities, cookie forgery, and implementation flaws. |
+| [**`asymmetric/`**](Python/CTFs/asymmetric/README.md)             | Progressive RSA challenges (Levels 1-9) and public-key cryptosystem attacks, covering factorization, parameter attacks, and advanced cryptanalysis. |
+| [**`hash/`**](Python/CTFs/hash/README.md)                         | Hash function challenges including collision attacks, length extension vulnerabilities, and cryptographic hash analysis. |
 
 ## Author
 
